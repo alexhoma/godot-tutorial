@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dctwktdggcqqc"]
+
+[ext_resource type="Texture2D" uid="uid://ddet6pl3cbdvm" path="res://assets/Court.png" id="1_ig7tw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Court" type="Sprite2D" parent="."]
+texture = ExtResource("1_ig7tw")
+offset = Vector2(640, 360)
