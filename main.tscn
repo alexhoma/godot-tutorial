@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dctwktdggcqqc"]
+[gd_scene load_steps=17 format=3 uid="uid://dctwktdggcqqc"]
 
 [ext_resource type="Texture2D" uid="uid://ddet6pl3cbdvm" path="res://assets/Court.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dekojab50sq3b" path="res://scripts/Ball.cs" id="2_5vw27"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://csw8qiq2l7qgg" path="res://assets/enemy_score.mp3" id="6_efxa6"]
 [ext_resource type="AudioStream" uid="uid://dbvdedd8rwvfq" path="res://assets/music.mp3" id="7_dg77c"]
 [ext_resource type="Script" uid="uid://boonl8sypvlj7" path="res://scripts/Rail.cs" id="8_kek77"]
+[ext_resource type="Script" uid="uid://dh0hysha4wj76" path="res://scripts/Wall.cs" id="9_4c57u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdy4"]
 
@@ -96,8 +97,11 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
 shape = SubResource("RectangleShape2D_2cqfq")
 
-[node name="Left" type="Area2D" parent="."]
+[node name="Left" type="Area2D" parent="." node_paths=PackedStringArray("Scorer")]
 position = Vector2(4, 361)
+script = ExtResource("9_4c57u")
+BallResetDirection = Vector2(1, 0)
+Scorer = NodePath("../Player 2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
@@ -105,8 +109,10 @@ shape = SubResource("RectangleShape2D_yaehf")
 disabled = true
 debug_color = Color(0.172549, 0.427451, 0.466667, 1)
 
-[node name="Right" type="Area2D" parent="."]
+[node name="Right" type="Area2D" parent="." node_paths=PackedStringArray("Scorer")]
 position = Vector2(1279, 360)
+script = ExtResource("9_4c57u")
+Scorer = NodePath("../Player 1")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
@@ -140,3 +146,5 @@ autoplay = true
 
 [connection signal="area_entered" from="Top" to="Top" method="OnAreaEntered"]
 [connection signal="area_entered" from="Bottom" to="Bottom" method="OnAreaEntered"]
+[connection signal="area_entered" from="Left" to="Left" method="OnAreaEntered"]
+[connection signal="area_entered" from="Right" to="Right" method="OnAreaEntered"]
