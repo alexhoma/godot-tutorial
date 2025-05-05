@@ -102,20 +102,22 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
 shape = SubResource("RectangleShape2D_2cqfq")
 
-[node name="Right" type="Area2D" parent="." node_paths=PackedStringArray("Scorer")]
+[node name="Right" type="Area2D" parent="." node_paths=PackedStringArray("Scorer", "Scored")]
 position = Vector2(1279, 360)
 script = ExtResource("9_4c57u")
 Scorer = NodePath("../Player 1")
+Scored = NodePath("../Player 2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
 shape = SubResource("RectangleShape2D_074og")
 
-[node name="Left" type="Area2D" parent="." node_paths=PackedStringArray("Scorer")]
+[node name="Left" type="Area2D" parent="." node_paths=PackedStringArray("Scorer", "Scored")]
 position = Vector2(2, 360)
 script = ExtResource("9_4c57u")
 BallResetDirection = Vector2(1, 0)
 Scorer = NodePath("../Player 2")
+Scored = NodePath("../Player 1")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]

@@ -4,7 +4,7 @@ using Godot;
 public partial class Player1 : Area2D, HasScore
 {
     [Export]
-    private int moveSpeed = 200;
+    private int moveSpeed = 350;
     public AudioStreamPlayer ScoreSound { get; set; }
     [Export]
     public Label ScoreDisplay { get; set; }

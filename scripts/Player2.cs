@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class Player2 : Area2D, HasScore
+public partial class Player2 : Area2D, HasScore, IsNpc
 {
     [Export]
     private Area2D follow;
@@ -10,6 +10,8 @@ public partial class Player2 : Area2D, HasScore
     private float difficulty = 0.3f;
 
     public int Score { get; set; }
+    
+    public float DifficultyMultiplier { get; set; } = 1;
 
     [Export]
     public Label ScoreDisplay { get; set; }
@@ -23,10 +25,16 @@ public partial class Player2 : Area2D, HasScore
 
     public override void _PhysicsProcess(double delta)
     {
+        GD.Print("Difficulty", (difficulty * DifficultyMultiplier));
+        
         Position = Position with
         {
             // don't leave the play field
-            Y = Math.Clamp(Position.Lerp(follow.Position, difficulty / 10).Y, 16, GetViewportRect().Size.Y - 16)
+            Y = Math.Clamp(
+                Position.Lerp(follow.Position, (difficulty * DifficultyMultiplier) / 10).Y, 
+                16, 
+                GetViewportRect().Size.Y - 16
+            )
         };
     }
 
